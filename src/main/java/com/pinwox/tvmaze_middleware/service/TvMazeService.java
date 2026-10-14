@@ -1,6 +1,7 @@
 package com.pinwox.tvmaze_middleware.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -55,4 +56,8 @@ public class TvMazeService {
 
         return null;
     }
+
+    public Map<String, Object> getShowById(Long showId) {
+    return tvMazeClient.getShowById(showId);
+}
 }

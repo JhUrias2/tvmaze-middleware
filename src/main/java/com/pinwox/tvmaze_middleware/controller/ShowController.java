@@ -1,9 +1,11 @@
 package com.pinwox.tvmaze_middleware.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,14 +25,27 @@ public class ShowController {
 
     @GetMapping("/search")
     public ResponseEntity<List<ShowSearchResponse>> searchShows(
-        @RequestParam("q") String query
+            @RequestParam("q") String query
     ) {
         if (query.isBlank()) {
             return ResponseEntity.badRequest().build();
         }
 
         return ResponseEntity.ok(
-            tvMazeService.searchShows(query)
+                tvMazeService.searchShows(query)
+        );
+    }
+
+    @GetMapping("/{showId}")
+    public ResponseEntity<Map<String, Object>> getShowById(
+            @PathVariable Long showId
+    ) {
+        if (showId <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(
+                tvMazeService.getShowById(showId)
         );
     }
 }
