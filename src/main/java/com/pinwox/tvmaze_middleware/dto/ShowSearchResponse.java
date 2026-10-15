@@ -2,10 +2,13 @@ package com.pinwox.tvmaze_middleware.dto;
 
 import java.util.List;
 
+import com.pinwox.tvmaze_middleware.model.Comment;
+
 public record ShowSearchResponse(
         Long id,
         String name,
         String channel,
         String summary,
-        List<String> genres
+        List<String> genres,
+        List<Comment> comments
 ) {}
